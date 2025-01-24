@@ -2,7 +2,8 @@ import pandas as pd
 import os
 from openpyxl import Workbook
 import plotly.graph_objects as go
-from src.helper import get_untrained_data, course_file_path_data, get_untrained_data, grouped_files, calc_perc, plot_course_wise_data, count_employee_occurrences
+from src.helper import get_untrained_data, course_file_path_data, get_untrained_data
+from src.helper import grouped_files, calc_perc, plot_course_wise_data, count_employee_occurrences
 
 
 data, course_names, my_dir = course_file_path_data()
