@@ -9,3 +9,7 @@ source activate ./env
 
 # Install requirements
 pip install -r requirements.txt
+
+
+# Execute the code
+python ./src/iGOT.py

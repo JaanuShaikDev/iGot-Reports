@@ -15,7 +15,7 @@ def get_untrained_data(course_names, data, grouped_data):
 
   # Process each sheet
   for sheet_name in course_names[:-1]:  # Exclude the last sheet if it's not needed
-      trained = pd.read_excel('completed.xlsx', sheet_name=sheet_name, header=1)
+      trained = pd.read_excel("Data/completed.xlsx", sheet_name=sheet_name, header=1)
       filter = data[(data['Employee No.'].isin(trained['Employee No.']))]
       total = data.groupby(grouped_data)[grouped_data].count()
       data_total = pd.DataFrame(
@@ -42,7 +42,7 @@ def get_untrained_data(course_names, data, grouped_data):
   return perc_data, trng_data
 
 
-def grouped_files(data, trang_data, my_dir, grouped_data):
+def grouped_files(data, trng_data, my_dir, grouped_data):
 
   ''' This function will generate group_wise Excel files'''
 
@@ -56,7 +56,7 @@ def grouped_files(data, trang_data, my_dir, grouped_data):
         for sheet_name, df in trng_data[sub].items():
           df.to_excel(writer, sheet_name = f"{sheet_name}", index = False)
 
-    files.download(file_path)
+    #files.download(file_path)
 
 
 def calc_perc(perc_data, my_dir):
@@ -68,16 +68,16 @@ def calc_perc(perc_data, my_dir):
    for sheet_name, df in perc_data.items():
           df.to_excel(writer, sheet_name=sheet_name, index=False)
 
-  files.download(file_path)
+  #files.download(file_path)
 
 
 def course_file_path_data():
 
   '''This function will give data file, course_names and file_path to download files'''
 
-  er = pd.read_excel('er.xlsx')
-  sd = pd.read_excel('sd.xlsx')
-  sol = pd.read_excel('sol.xlsx')
+  er = pd.read_excel("Data/er.xlsx")
+  sd = pd.read_excel("Data/sd.xlsx")
+  sol = pd.read_excel("Data/sol.xlsx")
 
   #er = er[er['Employee No.'] != 0]
   er.drop_duplicates(subset=['Employee No.'], inplace = True)
@@ -101,11 +101,11 @@ def course_file_path_data():
                  )
   data = data[['Employee No.', 'Employee Name', 'Cadre', 'Office', 'Account Office', 'Sub Division']]
 
-  my_dir = "Untrained"
+  my_dir = "Reports"
   os.makedirs(my_dir, exist_ok=True)
 
   # Get sheet names from the Excel file
-  temp = pd.ExcelFile('completed.xlsx')
+  temp = pd.ExcelFile("Data/completed.xlsx")
   course_names = temp.sheet_names
 
   return data, course_names, my_dir
@@ -265,4 +265,4 @@ def count_employee_occurrences(trng_data, data, grouped_data, column_name='Emplo
          (employee_counts_df[grouped_data] == sub) & (employee_counts_df['Pending_Count']  > 0)
          ].to_excel(file_path, index = False)
 
-      files.download(file_path)
+      #files.download(file_path)

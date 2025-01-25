@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: iGOT-Reports
+Version: 0.0.1
+Author: JaanuShaikDev
+Author-email: johnsyda.shaik@gmail.com
+Requires-Dist: pandas
+Requires-Dist: openpyxl
+Requires-Dist: plotly
+Requires-Dist: importlib-metadata; python_version < "3.12"

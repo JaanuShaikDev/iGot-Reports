@@ -1,0 +1,9 @@
+setup.py
+iGOT_Reports.egg-info/PKG-INFO
+iGOT_Reports.egg-info/SOURCES.txt
+iGOT_Reports.egg-info/dependency_links.txt
+iGOT_Reports.egg-info/requires.txt
+iGOT_Reports.egg-info/top_level.txt
+src/__init__.py
+src/helper.py
+src/iGOT.py
