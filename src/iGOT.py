@@ -23,5 +23,5 @@ plot_sd_wise_data(perc_data) # Run for sub-division wise only
 
 plot_pichart(perc_data) # Run for sub-division wise only
 
-#count_employee_occurrences(trng_data, data, 'Sub Division')
+#count_employee_occurrences(trng_data, data, 'Sub Division', my_dir)
 #count_employee_occurrences(trng_data, data, 'Account Office')

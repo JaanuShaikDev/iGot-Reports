@@ -152,7 +152,7 @@ def plot_pichart(perc_data):
 
   # Update layout
   fig.update_layout(
-      title="Completion Percentage for Narasaraopet Division in iGOT Courses (Dec-2024)",
+      title="Completion Percentage for Narasaraopet Division in iGOT Courses (Jan-2025)",
       height=600,
       width=800,
       showlegend=True,
@@ -213,7 +213,7 @@ def plot_sd_wise_data(perc_data):
 
   # Update layout for the bar chart
   fig.update_layout(
-      title="Overall Percentage Completion by Sub Division for iGOT Courses (Dec-2024)",
+      title="Overall Percentage Completion by Sub Division for iGOT Courses (Jan -2025)",
       height=600,
       width=800,
       xaxis_title="Sub Division",
@@ -226,7 +226,7 @@ def plot_sd_wise_data(perc_data):
   fig.show()
 
 
-def count_employee_occurrences(trng_data, data, grouped_data, column_name='Employee No.'):
+def count_employee_occurrences(trng_data, data, grouped_data, my_dir, column_name='Employee No.'):
     """
     This function counts the occurrences of each 'Employee No.' across all sheets in the trng_data dictionary.
 
