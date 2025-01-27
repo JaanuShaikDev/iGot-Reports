@@ -7,7 +7,7 @@ from src.helper import grouped_files, calc_perc, plot_sd_wise_data, count_employ
 from src.helper import plot_pichart
 
 
-data, course_names, my_dir = course_file_path_data()
+data, course_names = course_file_path_data()
 
 perc_data, trng_data = get_untrained_data(course_names, data, 'Sub Division')
 #perc_data, trng_data = get_untrained_data(course_names, data, 'Account Office')
@@ -23,5 +23,5 @@ plot_sd_wise_data(perc_data) # Run for sub-division wise only
 
 plot_pichart(perc_data) # Run for sub-division wise only
 
-#count_employee_occurrences(trng_data, data, 'Sub Division', my_dir)
+count_employee_occurrences(trng_data, data, 'Sub Division')
 #count_employee_occurrences(trng_data, data, 'Account Office')

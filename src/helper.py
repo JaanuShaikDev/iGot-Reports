@@ -42,9 +42,11 @@ def get_untrained_data(course_names, data, grouped_data):
   return perc_data, trng_data
 
 
-def grouped_files(data, trng_data, my_dir, grouped_data):
+def grouped_files(data, trng_data, grouped_data):
 
   ''' This function will generate group_wise Excel files'''
+  my_dir = "Reports/Courses"
+  os.makedirs(my_dir, exist_ok=True)
 
   for sub in list(data[grouped_data].unique()):
     file_path = os.path.join(my_dir, f'{sub}.xlsx')
@@ -101,14 +103,14 @@ def course_file_path_data():
                  )
   data = data[['Employee No.', 'Employee Name', 'Cadre', 'Office', 'Account Office', 'Sub Division']]
 
-  my_dir = "Reports"
-  os.makedirs(my_dir, exist_ok=True)
+  # my_dir = "Reports"
+  # os.makedirs(my_dir, exist_ok=True)
 
   # Get sheet names from the Excel file
   temp = pd.ExcelFile("Data/completed.xlsx")
   course_names = temp.sheet_names
 
-  return data, course_names, my_dir
+  return data, course_names
 
 
 def plot_pichart(perc_data):
@@ -235,6 +237,10 @@ def count_employee_occurrences(trng_data, data, grouped_data, my_dir, column_nam
     """
     # Initialize an empty list to store counts from all sheets
     all_counts = pd.Series(dtype=int)
+
+    # Creating directory
+    my_dir = "Reports/Count"
+    os.makedirs(my_dir, exist_ok=True)
 
     # Iterate through each sheet in the trng_data dictionary
     for sub, sheet_data in trng_data.items():
