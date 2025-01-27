@@ -1,6 +1,7 @@
 import pandas as pd
 import os
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
+from openpyxl.styles import Side, Border
 import plotly.graph_objects as go
 
 
@@ -228,7 +229,7 @@ def plot_sd_wise_data(perc_data):
   fig.show()
 
 
-def count_employee_occurrences(trng_data, data, grouped_data, my_dir, column_name='Employee No.'):
+def count_employee_occurrences(trng_data, data, grouped_data, column_name='Employee No.'):
     """
     This function counts the occurrences of each 'Employee No.' across all sheets in the trng_data dictionary.
 
@@ -272,3 +273,40 @@ def count_employee_occurrences(trng_data, data, grouped_data, my_dir, column_nam
          ].to_excel(file_path, index = False)
 
       #files.download(file_path)
+
+
+# def style_border(folder_path):
+
+#     """This function will set boarders to the cells of excel"""
+#     if os.path.exists(folder_path):
+#         items = os.list(folder_path)
+
+#         for item in items:
+#             wb = load_workbook(item)
+#             ws = wb.active
+
+#             border = Border(
+#                 left=Side(border_style="thin", color="000000"),
+#                 right=Side(border_style="thin", color="000000"),
+#                 top=Side(border_style="thin", color="000000"),
+#                 bottom=Side(border_style="thin", color="000000")
+#             )
+#             for row in ws.iter_rows():
+#                 for cell in row:
+#                     cell.border = border
+
+#             for column_cells in ws.columns:
+#                 max_length = 0
+#                 column_letter = column_cells[0].column_letter  # Get the column letter (e.g., A, B, C)
+#                 for cell in column_cells:
+#                     try:
+#                         if cell.value:  # Check if the cell has a value
+#                             max_length = max(max_length, len(str(cell.value)))
+#                     except:
+#                         pass
+#                 adjusted_width = max_length + 2  # Add some padding
+#                 ws.column_dimensions[column_letter].width = adjusted_width
+
+#             wb.save(item)
+#     else:
+#         print(f"The folder {folder_path} doesn't exist")
