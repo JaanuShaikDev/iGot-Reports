@@ -27,4 +27,6 @@ plot_pichart(perc_data) # Run for sub-division wise only
 count_employee_occurrences(trng_data, data, 'Sub Division')
 #count_employee_occurrences(trng_data, data, 'Account Office')
 
-#style_border("Reports/Count")
+folders = ['Count', 'Courses']
+for path in folders:
+    style_border(os.path.join('Reports',path))

@@ -275,38 +275,40 @@ def count_employee_occurrences(trng_data, data, grouped_data, column_name='Emplo
       #files.download(file_path)
 
 
-# def style_border(folder_path):
+def style_border(folder_path):
+    
+    """This function will set boarders to the cells of excel"""
+    #folder_path = r"E:\Jaanu\anaconda3\iGot Reports\Reports"
+    if os.path.exists(folder_path):
+        items = os.listdir(folder_path)
 
-#     """This function will set boarders to the cells of excel"""
-#     if os.path.exists(folder_path):
-#         items = os.list(folder_path)
+        for item in items:
+            wb = load_workbook(os.path.join(folder_path,item))
+            for sheet in wb.sheetnames:                
+                ws = wb[sheet]
 
-#         for item in items:
-#             wb = load_workbook(item)
-#             ws = wb.active
+                border = Border(
+                    left=Side(border_style="thin", color="000000"),
+                    right=Side(border_style="thin", color="000000"),
+                    top=Side(border_style="thin", color="000000"),
+                    bottom=Side(border_style="thin", color="000000")
+                )
+                for row in ws.iter_rows():
+                    for cell in row:
+                        cell.border = border
 
-#             border = Border(
-#                 left=Side(border_style="thin", color="000000"),
-#                 right=Side(border_style="thin", color="000000"),
-#                 top=Side(border_style="thin", color="000000"),
-#                 bottom=Side(border_style="thin", color="000000")
-#             )
-#             for row in ws.iter_rows():
-#                 for cell in row:
-#                     cell.border = border
+                for column_cells in ws.columns:
+                    max_length = 0
+                    column_letter = column_cells[0].column_letter  # Get the column letter (e.g., A, B, C)
+                    for cell in column_cells:
+                        try:
+                            if cell.value:  # Check if the cell has a value
+                                max_length = max(max_length, len(str(cell.value)))
+                        except:
+                            pass
+                    adjusted_width = max_length + 2  # Add some padding
+                    ws.column_dimensions[column_letter].width = adjusted_width
 
-#             for column_cells in ws.columns:
-#                 max_length = 0
-#                 column_letter = column_cells[0].column_letter  # Get the column letter (e.g., A, B, C)
-#                 for cell in column_cells:
-#                     try:
-#                         if cell.value:  # Check if the cell has a value
-#                             max_length = max(max_length, len(str(cell.value)))
-#                     except:
-#                         pass
-#                 adjusted_width = max_length + 2  # Add some padding
-#                 ws.column_dimensions[column_letter].width = adjusted_width
-
-#             wb.save(item)
-#     else:
-#         print(f"The folder {folder_path} doesn't exist")
+                wb.save(os.path.join(folder_path,item))
+    else:
+        print(f"The folder {folder_path} doesn't exist")
